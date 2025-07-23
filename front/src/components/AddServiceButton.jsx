@@ -3,14 +3,14 @@ import { useState } from "react";
 export default function AddServiceButton() {
     const [modalOpen, setModalOpen] = useState(false);
     const [services, setServices] = useState([]);
-    const [newService, setNewService] = useState({ nome: "", descricao: "" });
+    const [newService, setNewService] = useState({ nome: "", email: "", cpf: "", password: "", data_nascimento:"", cidade: "", estado: "" });
     const [expanded, setExpanded] = useState(null);
 
     const handleAddService = (e) => {
         e.preventDefault();
         if (newService.nome.trim() === "") return;
         setServices([...services, newService]);
-        setNewService({ nome: "", descricao: "" });
+        setNewService({ nome: "", email: "", cpf: "" });
         setModalOpen(false);
     };
 
@@ -37,18 +37,58 @@ export default function AddServiceButton() {
                         <form onSubmit={handleAddService} className="flex flex-col gap-2">
                             <input
                                 type="text"
-                                placeholder="Nome do item"
+                                placeholder="Nome"
                                 className="rounded px-2 py-1 outline-emerald-500"
                                 value={newService.nome}
                                 onChange={e => setNewService({ ...newService, nome: e.target.value })}
                                 required
                             />
                             <textarea
-                                placeholder="Descrição"
+                                placeholder="Email"
                                 className="rounded px-2 py-1 outline-emerald-500"
-                                value={newService.descricao}
-                                onChange={e => setNewService({ ...newService, descricao: e.target.value })}
+                                value={newService.email}
+                                onChange={e => setNewService({ ...newService, email: e.target.value })}
+                                required
                             />
+                            <input
+                                type="text"
+                                placeholder="Senha"
+                                className="rounded px-2 py-1 outline-emerald-500"
+                                value={newService.password}
+                                onChange={e => setNewService({ ...newService, password: e.target.value })}
+                                required
+                            />
+                            <input
+                                type="Number"
+                                placeholder="CPF"
+                                className="rounded px-2 py-1 outline-emerald-500"
+                                value={newService.cpf}
+                                onChange={e => setNewService({ ...newService, cpf: e.target.value })}
+                                required
+                            />
+                            <input
+                                type="date"
+                                placeholder="Data de Nascimento"
+                                className="rounded px-2 py-1 outline-emerald-500"
+                                value={newService.data_nascimento}
+                                onChange={e => setNewService({ ...newService, data_nascimento: e.target.value })}
+                                required
+                            />
+                            <input
+                                type="text"
+                                placeholder="Cidade"
+                                className="rounded px-2 py-1 outline-emerald-500"
+                                value={newService.cidade}
+                                onChange={e => setNewService({ ...newService, cidade: e.target.value })}
+                            />
+                            <input
+                                type="text"
+                                placeholder="Estado"
+                                className="rounded px-2 py-1 outline-emerald-500"
+                                value={newService.estado}
+                                onChange={e => setNewService({ ...newService, estado: e.target.value })}     
+                            />
+
                             <button
                                 type="submit"
                                 className="bg-green-500 text-white rounded px-3 py-1 mt-2 hover:bg-green-600 cursor-pointer"
@@ -87,7 +127,12 @@ export default function AddServiceButton() {
                         </div>
                         {expanded === idx && (
                             <div className="mt-2 text-gray-700">
-                                <p><strong>Descrição:</strong> {service.descricao || "Sem descrição."}</p>
+                                <p><strong>Email:</strong> {service.email}</p>
+                                <p><strong>CPF:</strong> {service.cpf}</p>
+                                <p><strong>Senha:</strong> {service.password}</p>
+                                <p><strong>Data:</strong> {service.data_nascimento}</p>
+                                <p><strong>Cidade:</strong> {service.cidade || "Sem cidade"}</p>
+                                <p><strong>Estado:</strong> {service.estado || "Sem estado"}</p>
                             </div>
                         )}
                     </div>

@@ -1,12 +1,77 @@
-# React + Vite
+# postgres-python-connect
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+API desenvolvida com **FastAPI** e **PostgreSQL** para gerenciamento de usuários e serviços públicos.
 
-Currently, two official plugins are available:
+## 🔧 Configuração do Ambiente
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 1. Crie e ative o ambiente virtual
 
-## Expanding the ESLint configuration
+```bash
+python3 -m venv venv
+source venv/bin/activate  # Linux/Mac
+venv\Scripts\activate     # Windows
+2. Instale as dependências
+pip install -r requirements.txt
+3. Configure o PostgreSQL
+Certifique-se de que o PostgreSQL está rodando.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Crie um banco de dados para a aplicação.
+
+No arquivo database.py, configure os dados de acesso (usuário, senha, host, porta, nome do banco).
+
+Exemplo de string de conexão:
+
+DATABASE_URL = "postgresql://usuario:senha@localhost:5432/nome_do_banco"
+4. Rode as migrações (se necessário) ou crie as tabelas com SQLAlchemy
+
+from models import Base
+from database import engine
+
+Base.metadata.create_all(bind=engine)
+5. Inicie o servidor
+
+uvicorn main:app --reload
+6. Acesse a documentação interativa
+Abra em seu navegador:
+http://127.0.0.1:8000/docs
+📌 Endpoints Principais
+Usuários
+GET /usuarios/ - Lista todos os usuários
+
+POST /usuarios/ - Cria um novo usuário
+
+Serviços Públicos
+GET /servicos/ - Lista todos os serviços públicos
+
+POST /servicos/ - Cria um novo serviço público
+
+📁 Estrutura do Projeto
+App/
+├── main.py
+├── database.py
+├── models.py
+├── schemas.py
+├── routes/
+│   ├── usuarios.py
+│   └── servicos.py
+└── venv/
+🧪 Testes
+Você pode testar os endpoints via:
+
+Insomnia
+
+Postman
+
+FastAPI Docs: http://127.0.0.1:8000/docs
+
+📋 Requisitos
+Python 3.10+
+
+PostgreSQL
+
+FastAPI
+
+SQLAlchemy
+
+Uvicorn
+

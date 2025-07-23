@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+psycopg2-binary
+sqlalchemy>=2.0
+pydantic>=2.0
+python-dotenv

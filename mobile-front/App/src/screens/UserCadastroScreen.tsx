@@ -10,8 +10,14 @@ import {
     View
 } from 'react-native';
 import { cadastrarUsuario } from '../services/userService';
+import { useNavigation } from '@react-navigation/native';
+import { useAuth } from '../contexts/AuthContext';
 
 export default function UserCadastroScreen() {
+    const navigation = useNavigation();
+
+    const { login } = useAuth();
+
     const [nome, setNome] = useState<string>('');
     const [email, setEmail] = useState<string>('');
     const [senha, setSenha] = useState<string>('');
@@ -36,7 +42,8 @@ export default function UserCadastroScreen() {
             });
 
             Alert.alert('Usuario cadastrado com sucesso');
-            // Renderizar para próxima página 
+            
+            login();
         } catch (error) {
             console.log(error);
             Alert.alert('Erro ao cadastrar usuário!');
@@ -47,7 +54,7 @@ export default function UserCadastroScreen() {
 
 
     return (
-        <ScrollView>
+        <ScrollView style={styles.container}>
             <Text style={styles.title}>Cadastro</Text>
 
             <TextInput
@@ -94,11 +101,12 @@ export default function UserCadastroScreen() {
                 onChangeText={setEstado}
             />
 
-             {loading ? (
+            {loading ? (
                 <ActivityIndicator size="large" color="#007bff" />
             ) : (
                 <Button title="Cadastrar" onPress={handleCadastro} />
             )}
+            <Text style={styles.textRoute}>Já tem uma conta? <Text style={styles.textLink} onPress={() => navigation.navigate('Login')}>Faça login.</Text></Text>
         </ScrollView>
     )
 }
@@ -107,7 +115,6 @@ const styles = StyleSheet.create({
     container: {
         padding: 20,
         flexGrow: 1,
-        justifyContent: 'center',
         backgroundColor: '#fff',
     },
     title: {
@@ -124,4 +131,12 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         borderRadius: 6,
     },
+    textRoute: {
+        top: 12,
+        fontSize: 16,
+        fontWeight: 'bold'
+    },
+    textLink: {
+        color: '#0000ff'
+    }
 });

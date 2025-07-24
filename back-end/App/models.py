@@ -1,4 +1,4 @@
-from sqlalchemy import Column, ForeignKey, Integer, String, Date
+from sqlalchemy import Column, ForeignKey, Integer, String, Date, Float
 from sqlalchemy.orm import relationship
 from App.database import Base
 
@@ -33,6 +33,8 @@ class ServicoPublico(Base):
     cidade = Column(String(100))
     estado = Column(String(100))
     cep = Column(String(20))
+    latitude = Column(Float, nullable=True)    # NOVO CAMPO
+    longitude = Column(Float, nullable=True)   # NOVO CAMPO
 
     avaliacoes = relationship("Avaliacao", back_populates="servico")
     denuncias = relationship("Denuncia", back_populates="servico")

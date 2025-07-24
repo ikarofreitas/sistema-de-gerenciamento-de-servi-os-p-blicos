@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, Text, ActivityIndicator, Alert } from 'react-native';
-import MapView, { Marker, Polyline } from 'react-native-maps';
+import { StyleSheet, View, Text, ActivityIndicator, Alert, TouchableOpacity } from 'react-native';
+import MapView, { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
 import { listarServicos } from '../services/servicoService';
+import { useAuth } from '../contexts/AuthContext';
 
 interface Servico {
   id_servico: number;
@@ -19,10 +20,8 @@ export default function HomeScreen() {
   const [location, setLocation] = useState<Location.LocationObjectCoords | null>(null);
   const [servicos, setServicos] = useState<Servico[]>([]);
   const [loading, setLoading] = useState(true);
-  const [routeCoords, setRouteCoords] = useState<{latitude: number, longitude: number}[] | null>(null);
 
-  // Sua chave da API do Google Maps (directions API) - coloque a sua
-  const GOOGLE_MAPS_APIKEY = process.env.GOOGLE_MAPS_APIKEY
+  const { logout } = useAuth();
 
   useEffect(() => {
     (async () => {
@@ -51,7 +50,6 @@ export default function HomeScreen() {
     })();
   }, []);
 
-
   if (loading || !location) {
     return (
       <View style={styles.loadingContainer}>
@@ -63,6 +61,10 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
+      <TouchableOpacity style={styles.logoutButton} onPress={logout}>
+        <Text style={styles.logoutText}>Sair</Text>
+      </TouchableOpacity>
+
       <MapView
         style={styles.map}
         initialRegion={{
@@ -84,21 +86,36 @@ export default function HomeScreen() {
             description={`${servico.rua}, ${servico.cidade}`}
           />
         ))}
-
-        {routeCoords && (
-          <Polyline
-            coordinates={routeCoords}
-            strokeColor="#007bff"
-            strokeWidth={4}
-          />
-        )}
       </MapView>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1 },
-  map: { flex: 1 },
-  loadingContainer: { flex: 1, justifyContent: 'center', alignItems: 'center' },
+  container: {
+    flex: 1,
+  },
+  map: {
+    flex: 1,
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  logoutButton: {
+    position: 'absolute',
+    top: 12,
+    left: 20,
+    zIndex: 1,
+    backgroundColor: '#e74c3c',
+    paddingVertical: 13,
+    paddingHorizontal: 18,
+    borderRadius: 8,
+  },
+  logoutText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 18
+  },
 });

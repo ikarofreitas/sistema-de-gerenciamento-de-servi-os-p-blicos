@@ -25,17 +25,17 @@ INSERT INTO Orgao_Responsavel (nome_orgao, esfera, contato) VALUES
 ('Secretaria de Educação de Quixeramobim', 'Municipal', '(88) 99999-0010');
 
 -- Populando a tabela Servico_Publico
-INSERT INTO Servico_Publico (nome, horario_funcionamento, telefone, id_orgao, rua, bairro, estado, cep) VALUES
-('Hospital Municipal de Quixadá', '24h', '(88) 98888-0001', 1, 'Rua das Flores', 'Centro', 'Quixadá' '63900-000'),
-('Escola Básica de Baturité', '07h às 17h', '(88) 98888-0002', 2, 'Av. Central', 'Bairro Novo', 'Baturité', '62760-000'),
-('Posto de Saúde de Redenção', '08h às 16h', '(88) 98888-0003', 3, 'Rua da Paz', 'Vila União', 'Redenção', '62790-000'),
-('Delegacia de Guaramiranga', '24h', '(88) 98888-0004', 4, 'Rua Verde', 'Centro', 'Guaramiranga', '62766-000'),
-('Hospital de Mulungu', '24h', '(88) 98888-0005', 5, 'Rua do Sol', 'Alto Alegre', 'Mulungu', '62764-000'),
-('Escola Municipal de Aracoiaba', '07h às 17h', '(88) 98888-0006', 6, 'Rua Principal', 'São João', 'Aracoiaba', '62750-000'),
-('Delegacia de Itapiúna', '24h', '(88) 98888-0007', 7, 'Rua Nova', 'Centro', 'Itapiúna', '62740-000'),
-('Posto de Saúde de Ibaretama', '08h às 16h', '(88) 98888-0008', 8, 'Rua Velha', 'Planalto', 'Ibaretama', '63970-000'),
-('Escola Técnica de Banabuiú', '07h às 18h', '(88) 98888-0009', 9, 'Av. Beira Rio', 'Cohab', 'Banabuiú' '63960-000'),
-('Posto de Saúde Central de Quixeramobim', '07h às 17h', '(88) 98888-0010', 10, 'Rua Esperança', 'Boa Vista', 'Quixeramobim' '63800-000');
+INSERT INTO Servico_Publico (nome, horario_funcionamento, telefone, id_orgao, rua, bairro, estado, cep, latitude, longitude) VALUES
+('Hospital Municipal de Quixadá', '24h', '(88) 98888-0001', 1, 'Rua das Flores', 'Centro', 'Quixadá', '63900-000', -4.969537, -39.023853),
+('Escola Básica de Baturité', '07h às 17h', '(88) 98888-0002', 2, 'Av. Central', 'Bairro Novo', 'Baturité', '62760-000', /*latitude*/, /*longitude*/),
+('Posto de Saúde de Redenção', '08h às 16h', '(88) 98888-0003', 3, 'Rua da Paz', 'Vila União', 'Redenção', '62790-000', -6.704034, -38.631231),
+('Delegacia de Guaramiranga', '24h', '(88) 98888-0004', 4, 'Rua Verde', 'Centro', 'Guaramiranga', '62766-000', -4.265288, -39.076851),
+('Hospital de Mulungu', '24h', '(88) 98888-0005', 5, 'Rua do Sol', 'Alto Alegre', 'Mulungu', '62764-000', -4.457282, -38.963975),
+('Escola Municipal de Aracoiaba', '07h às 17h', '(88) 98888-0006', 6, 'Rua Principal', 'São João', 'Aracoiaba', '62750-000', -4.249497, -38.782036),
+('Delegacia de Itapiúna', '24h', '(88) 98888-0007', 7, 'Rua Nova', 'Centro', 'Itapiúna', '62740-000', -4.169705, -38.951469),
+('Posto de Saúde de Ibaretama', '08h às 16h', '(88) 98888-0008', 8, 'Rua Velha', 'Planalto', 'Ibaretama', '63970-000', -4.100834, -39.029317),
+('Escola Técnica de Banabuiú', '07h às 18h', '(88) 98888-0009', 9, 'Av. Beira Rio', 'Cohab', 'Banabuiú', '63960-000', -5.288473, -39.053472),
+('Posto de Saúde Central de Quixeramobim', '07h às 17h', '(88) 98888-0010', 10, 'Rua Esperança', 'Boa Vista', 'Quixeramobim', '63800-000', -5.207837, -39.307582);
 
 -- Populando a tabela Hospital
 INSERT INTO Hospital (id_servico, numero_de_leitos, tem_emergencia) VALUES

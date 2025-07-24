@@ -30,7 +30,7 @@ from database import engine
 Base.metadata.create_all(bind=engine)
 5. Inicie o servidor
 
-uvicorn main:app --reload
+uvicorn main:app --reload || uvicorn main:app --reload --host 0.0.0.0 --port 8000
 6. Acesse a documentação interativa
 Abra em seu navegador:
 http://127.0.0.1:8000/docs

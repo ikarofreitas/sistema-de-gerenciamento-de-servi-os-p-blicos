@@ -31,6 +31,9 @@ class ServicoPublicoBase(BaseModel):
     cep: Optional[str] = None
     id_orgao: Optional[int] = None
 
+    latitude: Optional[float] = None
+    longitude: Optional[float] = None
+
 class ServicoPublicoCreate(ServicoPublicoBase):
     pass
 
